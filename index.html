@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Online Pair Generator</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="myDIV" class="header">
+  <h2>My Team</h2>
+  <input type="text" id="name" placeholder="Enter a name or comma separated names">
+  <span onclick="generatePairSets()" class="addBtn">Generate Pairs</span>
+</div>
+
+<ul id="teamList">
+</ul>
+
+<div id="generated-pairs" class="generated-pairs">
+  <h4>Pairs</h4>
+  <div id="container" class="generated-pairs">
+
+  </div>
+</div>
+
+
+<script src="pair-generator.js" ></script>
+</body>
+</html>
