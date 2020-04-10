@@ -58,7 +58,7 @@ function generatePairSubSets (names, result, pairSetCount){
     result[g+pairSetCount] = existingElements;
   }
 
-  if(names.length>3){
+  if(names.length>2){
     var mid = Math.floor(names.length/2);
     var firsthalf = names.slice(0, mid);
     var secondhalf = names.slice(mid, names.length);
@@ -74,13 +74,13 @@ function groupThePairs(names) {
  var pairs = [];
  if(names.length === 2){
     groups[0] = [names[0] + "," + names[1]];
-  } if(names.length === 3){
-    groups[0] = [names[0] + "," + names[1]];
-    groups[1] = [names[1] + "," + names[2]];
-    groups[2] = [names[0] + "," + names[2]];
-  }else if(names.length > 2){
+  } if(names.length > 2){
     var mid = Math.floor((names.length)/2);
-    for (let group = 0; group < mid; group++) {
+    var maxGroup = mid;
+    if(names.length % 2 !== 0){
+      maxGroup++;
+    }
+    for (let group = 0; group < maxGroup; group++) {
       for (let j = 0; j < mid; j++) {
         var nextNameIndex = mid + j+ group;
         if(nextNameIndex >= names.length){
