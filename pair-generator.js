@@ -13,11 +13,7 @@ function generatePairSets() {
     names[0] = inputValue;
   }
 
-  var myTeam = document.getElementsByTagName("LI");
-  for (i = 0; i < myTeam.length; i++) {
-    names.push(myTeam[i].firstChild.textContent);
-  }
-
+  let uniqueNames = [...new Set(names)];
 
   var contrainer = document.getElementById("container");
   contrainer.innerText = "";
@@ -25,7 +21,70 @@ function generatePairSets() {
   contrainer.appendChild(table);
 
   var pairs = [];
-  generatePairSubSets(names, pairs, 0);
+  generatePairSubSets(uniqueNames, pairs, 0);
+
+  table.innerHTML = horizontalPrint(pairs);
+
+}
+
+function selectElementContents(el) {
+  var body = document.body, range, sel;
+  if (document.createRange && window.getSelection) {
+    range = document.createRange();
+    sel = window.getSelection();
+    sel.removeAllRanges();
+    try {
+      range.selectNodeContents(el);
+      sel.addRange(range);
+    } catch (e) {
+      range.selectNode(el);
+      sel.addRange(range);
+    }
+    document.execCommand("copy");
+
+  } else if (body.createTextRange) {
+    range = body.createTextRange();
+    range.moveToElementText(el);
+    range.select();
+    range.execCommand("Copy");
+  }
+}
+
+function horizontalPrint(pairs){
+  var personSets = [];
+  for (let i = 0; i < pairs.length; i++) {
+    for (let j = 0; j < pairs[i].length ; j++) {
+      var pairname = pairs[i][j].split(",");
+
+      if(!personSets[pairname[0]]){
+        personSets[pairname[0]] = [];
+      }
+      if(!personSets[pairname[1]]){
+        personSets[pairname[1]] = [];
+      }
+      personSets[pairname[0]][i] = pairname[1]
+      personSets[pairname[1]][i] = pairname[0]
+    }
+  }
+
+  var content = "<tr><th>Name</th>";
+  for (let i = 0; i < pairs.length; i++) {
+    content += ("<th>Set "+ (i+1) +"</th>");
+  }
+  content += "</tr>";
+
+  for (const name in personSets){
+    content += ("<tr><th><b>"+ name +"</b></th>");
+    for (let i = 0; i < pairs.length; i++) {
+      content+= ("<td>"+ (personSets[name][i] ? personSets[name][i] : "") +"</td>");
+    }
+    content += "</tr>";
+  }
+
+  return content;
+}
+
+function verticalPrint(pairs){
   var content = "<tr>";
   for (let i = 0; i < pairs.length; i++) {
     if(i !== 0 && i%3 === 0){
@@ -34,15 +93,13 @@ function generatePairSets() {
     content+= ("<td><table><tr><td colspan='2'>Set-"+(i+1)+"</td></tr>");
 
     for (let j = 0; j < pairs[i].length ; j++) {
-       var pairname = pairs[i][j].split(",");
-       content+= ("<tr><td>"+pairname[0]+"</td><td>"+pairname[1]+"</td></tr>");
+      var pairname = pairs[i][j].split(",");
+      content+= ("<tr><td>"+pairname[0]+"</td><td>"+pairname[1]+"</td></tr>");
     }
     content+= ("</table></td>");
   }
   content+= ("</tr>");
-
-  table.innerHTML = content;
-
+  return content;
 }
 
 

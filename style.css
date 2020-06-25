@@ -99,13 +99,21 @@ ul li.checked::before {
 }
 
 /* Style the input */
-input {
+input.team-name {
     margin: 0;
     border: none;
     border-radius: 0;
     width: 75%;
     padding: 10px;
     float: left;
+    font-size: 16px;
+}
+
+input.start-time {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    padding: 10px;
     font-size: 16px;
 }
 
@@ -123,16 +131,34 @@ input {
     border-radius: 0;
 }
 
-.addBtn:hover {
+.copyBtn {
+    padding: 10px;
+    width: 20%;
+    background: #d9d9d9;
+    color: #555;
+    float: right;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+}
+
+.copyBtn:hover, .addBtn:hover {
     background-color: #bbb;
 }
 
-td {
+th, td {
     padding: 10px;
     border: #888888 1px solid;
     text-align: left;
 }
 
+th {
+    background-color: #bbbbbb;
+}
+
 table {
     width: 100%;
 }
+

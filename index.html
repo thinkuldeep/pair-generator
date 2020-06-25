@@ -8,19 +8,18 @@
 <body>
 <div id="myDIV" class="header">
   <h2>My Team</h2>
-  <input type="text" id="name" placeholder="Enter a name or comma separated names">
+  <input class="team-name" type="text" id="name" placeholder="Enter comma separated names">
   <span onclick="generatePairSets()" class="addBtn">Generate Pairs</span>
 </div>
 
-<ul id="teamList">
-</ul>
-
 <div id="generated-pairs" class="generated-pairs">
-  <h4>Pairs</h4>
-  <div id="container" class="generated-pairs">
+    <span onclick="selectElementContents( document.getElementById('container') );" class="copyBtn">Copy</span> <h4>Pairs</h4>
+
+    <div id="container" class="generated-pairs" style="overflow-x:auto;">
 
   </div>
 </div>
+
 
 
 <script src="pair-generator.js" ></script>
